@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mamo x Rias!</title>
+    <title>Giga Sürpriz!</title>
     <style>
         body, html {
             margin: 0;
@@ -15,30 +15,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Impact', sans-serif;
         }
 
+        /* Başlat Butonu */
         #baslat-btn {
-            padding: 25px 50px;
-            font-size: 22px;
+            padding: 30px 60px;
+            font-size: 26px;
             font-weight: bold;
             color: white;
-            background: linear-gradient(45deg, #2ecc71, #27ae60);
-            border: none;
-            border-radius: 50px;
+            background: linear-gradient(45deg, #ff0000, #990000);
+            border: 4px solid white;
+            border-radius: 15px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
             z-index: 100;
+            animation: pulse 1s infinite;
         }
 
-        #baslat-btn:hover {
-            transform: scale(1.1);
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         #saka-ekrani {
-            display: none; 
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -48,27 +50,46 @@
         }
 
         .virus-flash {
-            animation: flash-bg 0.15s infinite;
+            animation: flash-bg 0.1s infinite;
         }
 
         @keyframes flash-bg {
-            0% { background-color: red; }
-            50% { background-color: black; }
-            100% { background-color: red; }
+            0% { background-color: #ff0000; }
+            50% { background-color: #000000; }
+            100% { background-color: #ff0000; }
         }
 
-        /* YENİ RESİM İÇİN STİL - Rias'ın önde olduğundan emin olmak için z-index'i yükselttik */
+        /* RIAS GÖRSELİ (Sol Taraf) */
         #rias-resmi {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: auto;
-            height: 90%; /* Ekran yüksekliğine göre ayarla */
-            max-width: 90%;
-            object-fit: contain; /* Resmi bozmadan sığdır */
-            z-index: 1005; /* Kırık efektinden de önde olsun */
-            filter: drop-shadow(0 0 30px #ff0000);
+            bottom: 0;
+            left: 0;
+            height: 80%;
+            z-index: 1005;
+            filter: drop-shadow(0 0 20px red);
+        }
+
+        /* GIGA CHAD GÖRSELİ (Sağ Taraf) */
+        #giga-chad {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 90%;
+            z-index: 1006;
+            filter: drop-shadow(0 0 20px #00ff00);
+        }
+
+        /* "CAN YOU FEEL MY HEART" yazısı veya Hack mesajı */
+        #sigma-mesaj {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 50px;
+            text-shadow: 5px 5px #000;
+            z-index: 1010;
+            display: none;
         }
 
         #kirik-efekt {
@@ -77,59 +98,62 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://i.ibb.co/3sX8M8K/cracked-screen.png'); /* Daha sağlam bir kırık efekti linki */
+            background-image: url('https://i.ibb.co/3sX8M8K/cracked-screen.png');
             background-size: cover;
-            background-position: center;
-            opacity: 0.8;
+            opacity: 0.7;
             pointer-events: none;
-            z-index: 1002;
+            z-index: 1100;
         }
     </style>
 </head>
 <body>
 
-    <button id="baslat-btn">OYUNU BAŞLAT 🎮</button>
+    <button id="baslat-btn">BEDAVA ROBUX AL 🤑</button>
 
     <div id="saka-ekrani">
-        <img id="rias-resmi" src="https://w0.peakpx.com/wallpaper/318/10/HD-wallpaper-rias-gremory-highschool-dxd.jpg" alt="Rias">
+        <div id="sigma-mesaj">HACKED BY GIGA CHAD</div>
+        
+        <img id="rias-resmi" src="rias_v2.jpg" alt="Rias">
+        
+        <img id="giga-chad" src="https://i.kym-cdn.com/entries/icons/original/000/026/152/gigachad.jpg" alt="Giga Chad">
+        
         <div id="kirik-efekt"></div>
     </div>
 
     <script>
-        // JavaScript kodları aynı kalıyor
         const buton = document.getElementById('baslat-btn');
         const sakaEkrani = document.getElementById('saka-ekrani');
+        const mesaj = document.getElementById('sigma-mesaj');
 
         buton.addEventListener('click', function() {
-            alert("SİSTEM HATASI: Bilinmeyen bir kaynak dosyalarınıza erişiyor!");
-            alert("UYARI: C:\Windows\System32 siliniyor...");
-            alert("Trojan:Win32/RiasGremory.A tespit edildi!");
-            alert("Cihazınızın kontrolü ele geçirildi. Geçmiş olsun :)");
+            alert("SİSTEM GÜVENLİĞİ İHLAL EDİLDİ!");
+            alert("GIGA-VIRUS.EXE YÜKLENİYOR...");
+            alert("Sigma modu aktif edildi.");
 
             buton.style.display = 'none';
             sakaEkrani.style.display = 'block';
+            mesaj.style.display = 'block';
             document.body.classList.add('virus-flash');
 
+            // Ses Efekti
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioCtx.createOscillator();
                 const gainNode = audioCtx.createGain();
 
-                oscillator.type = 'sawtooth';
-                oscillator.frequency.setValueAtTime(50, audioCtx.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 1.5);
+                oscillator.type = 'square'; // Daha sert bir ses
+                oscillator.frequency.setValueAtTime(40, audioCtx.currentTime);
+                oscillator.frequency.linearRampToValueAtTime(800, audioCtx.currentTime + 2);
                 
                 gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 5);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 8);
 
                 oscillator.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
 
                 oscillator.start();
-                oscillator.stop(audioCtx.currentTime + 5);
-            } catch (e) {
-                console.log("Ses çalınamadı.");
-            }
+                oscillator.stop(audioCtx.currentTime + 8);
+            } catch (e) { console.log("Ses hatası."); }
         });
     </script>
 </body>
