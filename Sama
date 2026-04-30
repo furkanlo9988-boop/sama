@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sürpriz Oyun!</title>
+    <style>
+        /* Başlangıç ekranı stili */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Masum görünen buton */
+        #baslat-btn {
+            padding: 20px 40px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+        
+        #baslat-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Şaka başladığında görünecek kapsayıcı */
+        #saka-ekrani {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background-color: black;
+        }
+
+        /* Kırmızı-siyah yanıp sönme efekti (Virüs hissi) */
+        .flash-efekti {
+            animation: flash 0.1s infinite;
+        }
+
+        @keyframes flash {
+            0% { background-color: red; }
+            50% { background-color: black; }
+            100% { background-color: red; }
+        }
+
+        /* Rias Gremory Resmi */
+        #rias-resmi {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            z-index: 5;
+            box-shadow: 0 0 50px red;
+        }
+
+        /* Kırık ekran efekti (En üstte duracak şeffaf görsel) */
+        #kirik-ekran {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* Tıklamaları engellememesi için */
+            z-index: 10;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="baslat-btn">Tıkla ve Oyuna Başla!</button>
+
+    <div id="saka-ekrani">
+        <img id="rias-resmi" src="https://i.pinimg.com/736x/85/4c/26/854c26a7e04f981eb3cb91dcc4f57270.jpg" alt="Rias">
+        
+        <img id="kirik-ekran" src="https://freepngimg.com/save/28659-cracked-screen-transparent-background/420x306" alt="Kirik Ekran">
+    </div>
+
+    <script>
+        document.getElementById('baslat-btn').addEventListener('click', function() {
+            
+            // 1. AŞAMA: Sinir bozucu uyarı mesajları
+            alert("DİKKAT: CİHAZINIZDA KRİTİK BİR GÜVENLİK AÇIĞI TESPİT EDİLDİ!");
+            alert("SİSTEME İZİNSİZ GİRİŞ YAPILIYOR...");
+            alert("BÜTÜN DOSYALAR ŞİFRELENİYOR...");
+            alert("TROJAN.BAT ÇALIŞTIRILDI!");
+            alert("ARTIK ÇOK GEÇ :)");
+
+            // 2. AŞAMA: Butonu gizle ve şaka ekranını göster
+            this.style.display = 'none';
+            const sakaEkrani = document.getElementById('saka-ekrani');
+            sakaEkrani.style.display = 'block';
+            sakaEkrani.classList.add('flash-efekti'); // Yanıp sönme efektini başlat
+
+            // 3. AŞAMA: Garip ve rahatsız edici sesler çıkarma (Web Audio API)
+            // Tarayıcının kendi ses motorunu kullanarak dışarıdan dosya yüklemeye gerek kalmadan korkunç bir ses üretiyoruz.
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            // Testere dişi dalgası (rahatsız edici bir ses tonu yaratır)
+            oscillator.type = 'sawtooth'; 
+            
+            // Sesi pesten (düşük frekans) tize (yüksek frekans) doğru hızla çeker
+            oscillator.frequency.setValueAtTime(100, audioCtx.currentTime); 
+            oscillator.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 2); 
+            
+            // Ses şiddetini ayarlama
+            gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 3); // 3 saniye sonra ses kısılır
+
+            // Bağlantıları yap ve sesi çal
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 4); // 4 saniye sonra sesi tamamen kapat
+        });
+    </script>
+</body>
+</html>
+
