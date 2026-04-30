@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sürpriz Oyun!</title>
+    <title>Mamo x Rias!</title>
     <style>
-        /* Tüm ekranı kaplayan temel stil */
         body, html {
             margin: 0;
             padding: 0;
@@ -19,7 +18,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Başlangıç Butonu */
         #baslat-btn {
             padding: 25px 50px;
             font-size: 22px;
@@ -39,9 +37,8 @@
             background: linear-gradient(45deg, #27ae60, #2ecc71);
         }
 
-        /* Şaka Ekranı Konfigürasyonu */
         #saka-ekrani {
-            display: none; /* Başlangıçta gizli */
+            display: none; 
             position: fixed;
             top: 0;
             left: 0;
@@ -50,7 +47,6 @@
             z-index: 999;
         }
 
-        /* Kırmızı-Siyah Virüs Efekti */
         .virus-flash {
             animation: flash-bg 0.15s infinite;
         }
@@ -61,26 +57,27 @@
             100% { background-color: red; }
         }
 
-        /* Rias Gremory Görseli */
+        /* YENİ RESİM İÇİN STİL - Rias'ın önde olduğundan emin olmak için z-index'i yükselttik */
         #rias-resmi {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 85%;
-            max-width: 500px;
-            z-index: 1001;
+            width: auto;
+            height: 90%; /* Ekran yüksekliğine göre ayarla */
+            max-width: 90%;
+            object-fit: contain; /* Resmi bozmadan sığdır */
+            z-index: 1005; /* Kırık efektinden de önde olsun */
             filter: drop-shadow(0 0 30px #ff0000);
         }
 
-        /* Kırık Ekran Katmanı */
         #kirik-efekt {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://freepngimg.com/save/28659-cracked-screen-transparent-background/420x306');
+            background-image: url('https://i.ibb.co/3sX8M8K/cracked-screen.png'); /* Daha sağlam bir kırık efekti linki */
             background-size: cover;
             background-position: center;
             opacity: 0.8;
@@ -94,33 +91,31 @@
     <button id="baslat-btn">OYUNU BAŞLAT 🎮</button>
 
     <div id="saka-ekrani">
-        <img id="rias-resmi" src="https://i.pinimg.com/736x/85/4c/26/854c26a7e04f981eb3cb91dcc4f57270.jpg" alt="Rias">
+        <img id="rias-resmi" src="https://w0.peakpx.com/wallpaper/318/10/HD-wallpaper-rias-gremory-highschool-dxd.jpg" alt="Rias">
         <div id="kirik-efekt"></div>
     </div>
 
     <script>
+        // JavaScript kodları aynı kalıyor
         const buton = document.getElementById('baslat-btn');
         const sakaEkrani = document.getElementById('saka-ekrani');
 
         buton.addEventListener('click', function() {
-            // 1. Uyarı Mesajları (Sırayla çıkar)
             alert("SİSTEM HATASI: Bilinmeyen bir kaynak dosyalarınıza erişiyor!");
             alert("UYARI: C:\Windows\System32 siliniyor...");
             alert("Trojan:Win32/RiasGremory.A tespit edildi!");
             alert("Cihazınızın kontrolü ele geçirildi. Geçmiş olsun :)");
 
-            // 2. Arayüzü Değiştir
             buton.style.display = 'none';
             sakaEkrani.style.display = 'block';
             document.body.classList.add('virus-flash');
 
-            // 3. Garip Ses Efekti (Web Audio API)
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioCtx.createOscillator();
                 const gainNode = audioCtx.createGain();
 
-                oscillator.type = 'sawtooth'; // Rahatsız edici testere dişi sesi
+                oscillator.type = 'sawtooth';
                 oscillator.frequency.setValueAtTime(50, audioCtx.currentTime);
                 oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 1.5);
                 
@@ -133,10 +128,9 @@
                 oscillator.start();
                 oscillator.stop(audioCtx.currentTime + 5);
             } catch (e) {
-                console.log("Ses çalınamadı, tarayıcı engellemiş olabilir.");
+                console.log("Ses çalınamadı.");
             }
         });
     </script>
 </body>
 </html>
-
